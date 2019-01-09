@@ -43,15 +43,23 @@ app.configure(channels);
 
 
 app.get(/L\/.+/, function(req, res, next){
-  
+  const LNK = req.url.substring(3)
   console.log(req.url)
-  req.url.substring(3)
-
-  // You namespace your feathers service routes so that
-  // don't get route conflicts and have nice URLs.
   app.service('/links')
-    .find({ query: {$sort: { updatedAt: -1 } } })
-    .then(result => res.render('message-list', result.data))
+    .find({ query: { LNK } })
+    .then(result => {
+      if (result.data.length) {
+        const record = result.data[0]
+        console.log('Redirecting to ' + record.url)        
+        const redirectUrl = record.url.startsWith('http')
+          ? record.url
+          : 'http://'+ record.url
+        res.redirect(redirectUrl)
+      } else {
+        console.log('Redirecting to home page')
+        res.redirect('/')
+      }
+    })
     .catch(next);
 });
 
