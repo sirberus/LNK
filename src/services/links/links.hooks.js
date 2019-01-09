@@ -1,11 +1,13 @@
 
 
+const checkIfLinkExists = require('../../hooks/check-if-link-exists');
+
 module.exports = {
   before: {
     all: [],
     find: [],
-    get: [],
-    create: [],
+    get: [checkIfLinkExists()],
+    create: [checkIfLinkExists()],
     update: [],
     patch: [],
     remove: []
