@@ -41,6 +41,21 @@ app.configure(services);
 // Set up event channels (see channels.js)
 app.configure(channels);
 
+
+app.get(/L\/.+/, function(req, res, next){
+  
+  console.log(req.url)
+  req.url.substring(3)
+
+  // You namespace your feathers service routes so that
+  // don't get route conflicts and have nice URLs.
+  app.service('/links')
+    .find({ query: {$sort: { updatedAt: -1 } } })
+    .then(result => res.render('message-list', result.data))
+    .catch(next);
+});
+
+
 // Configure a middleware for 404s and the error handler
 app.use(express.notFound());
 app.use(express.errorHandler({ logger }));
