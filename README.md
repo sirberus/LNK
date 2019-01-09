@@ -10,6 +10,7 @@ With current versions of Node.js and git installed:
 
 ```
 git clone git@github.com:sirberus/LNK.git
+cd LNK
 npm i
 npm run start
 ```
