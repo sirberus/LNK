@@ -1,4 +1,4 @@
-![LNK logo](plug.png)
+<img src="plug.png" alt="plug" width="500">
 
 # LNK
 
