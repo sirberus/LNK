@@ -1,4 +1,4 @@
-<img src="plug.png" alt="plug" width="400">
+<img src="plug.png" alt="plug" width="300">
 
 # LNK
 
